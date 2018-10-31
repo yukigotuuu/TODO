@@ -51,6 +51,20 @@ document.getElementById('add').addEventListener('click',function(){
 	done.classList.add('done');
 	done.innerHTML = doneIcon;
 
+	//未完了を完了にする処理
+	done.addEventListener('click',function(){
+		let task = this.parentNode.parentNode;
+	
+	//完了一覧に追加する
+		document.getElementById('done').appendChild(task);
+
+
+
+	})
+
+
+
+
 	//ユーザーが入力した内容を未完了一覧に追加
 	buttons.appendChild(remove);
 	buttons.appendChild(done);
@@ -64,9 +78,9 @@ document.getElementById('add').addEventListener('click',function(){
 
 })
 
-//未完了を完了にする処理
+
 //完了ボタンをクリックする
-//完了一覧に追加する
+
 //未完了一覧から削除
 
 
