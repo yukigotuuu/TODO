@@ -20,6 +20,8 @@ let doneIcon = '<i class="far fa-check-circle fa-lg"></i>';
 
 */
 
+
+//- 追加ボタン(+)をクリックすると、ユーザーがフォームに入力した内容が画面の未完了タスクの一覧に表示される。
 document.getElementById('add').addEventListener('click',function(){
 	let task = document.getElementById('task').value;
 	
@@ -36,11 +38,18 @@ document.getElementById('add').addEventListener('click',function(){
 	remove.classList.add('remove');
 	remove.innerHTML = removeIcon;
 
+
+	//削除ボタンをクリック
+	remove.addEventListener('click',function(){
+		let task = this.parentNode.parentNode;
+		task.remove();
+	})
+
+
 	//完了btn作成
 	let done = document.createElement('button');
 	done.classList.add('done');
 	done.innerHTML = doneIcon;
-
 
 	//ユーザーが入力した内容を未完了一覧に追加
 	buttons.appendChild(remove);
@@ -48,11 +57,21 @@ document.getElementById('add').addEventListener('click',function(){
 	notyet.appendChild(buttons);
 	document.getElementById('not-yet').appendChild(notyet);
 
-
+	//ユーザーが入力した内容を消す
 	document.getElementById('task').value = '';
 
 
 
-
-
 })
+
+//未完了を完了にする処理
+//完了ボタンをクリックする
+//完了一覧に追加する
+//未完了一覧から削除
+
+
+
+
+//未完了を削除する処理
+
+//未完了一覧から削除
