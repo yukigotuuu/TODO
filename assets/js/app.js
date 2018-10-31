@@ -22,14 +22,36 @@ let doneIcon = '<i class="far fa-check-circle fa-lg"></i>';
 
 document.getElementById('add').addEventListener('click',function(){
 	let task = document.getElementById('task').value;
+	
+	//追加する要素を作成
 	let notyet = document.createElement('li');
 	notyet.textContent = task;
 
+	//btnを表示する場所
+	let buttons = document.createElement('div');
+	buttons.classList.add('buttons');
 
-	let done = document.getElementById('done').value;
+	//削除btn作成
+	let remove = document.createElement('button');
+	remove.classList.add('remove');
+	remove.innerHTML = removeIcon;
 
-	let ul = document.createElement('task');
-	anchor.href = notyet;
+	//完了btn作成
+	let done = document.createElement('button');
+	done.classList.add('done');
+	done.innerHTML = doneIcon;
+
+
+	//ユーザーが入力した内容を未完了一覧に追加
+	buttons.appendChild(remove);
+	buttons.appendChild(done);
+	notyet.appendChild(buttons);
+	document.getElementById('not-yet').appendChild(notyet);
+
+
+	document.getElementById('task').value = '';
+
+
 
 
 
