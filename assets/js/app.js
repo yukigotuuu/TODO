@@ -1,6 +1,33 @@
 let removeIcon = '<i class="far fa-trash-alt fa-lg"></i>';
 let doneIcon = '<i class="far fa-check-circle fa-lg"></i>';
+let data;
 
+if (localStorage.getItem('todoList')){
+	//でーたを取り出す
+	data = JSON.parse(localStorage.getItem('todoList'));
+
+	//取得したデータを画面に表示する
+	for (let task of data.notyet){
+		addTaskToDOM(task);
+	}
+
+	}else{//そうでなければ
+	//データの保存先を作成
+	data = {
+	 notyet: [],
+	 dane: []
+	};
+
+}
+
+//保存したデータを画面に表示する処理//
+//データが保存されていないときにデータを取ろうとするとnullになる
+//データを保存するために変数は↑みたいな形にしたい
+//データがあるときはgetItemで取得すると上とおなじ形になる
+//上とおなじになるのはsetItemのときに変数dataを保存したい
+/*data = JSON.parse(localStorage.getItem('todoList'));
+console.log(data);
+*/
 
 
 
@@ -25,8 +52,37 @@ let doneIcon = '<i class="far fa-check-circle fa-lg"></i>';
 document.getElementById('add').addEventListener('click',function(){
 	let task = document.getElementById('task').value;
 	
+	addTaskToDOM(task);
+
+	//ユーザーが入力した内容を消す
+	document.getElementById('task').value = '';
+
+
+
+/*画面をリロードしても消えないようにする処理*/
+//データを保存
+
+
+	//データ保存
+	//配列にデータを保存
+	//task
+	//連想配列dataのnotyetに追加したい
+	//末尾に追加するときのメゾット　push
+	data.notyet.push(task);
+
+	//配列をDBに保存
+	localStorage.setItem('todoList',JSON.stringify(data));
+
+})
+
+
+//関数名 addTaaskToDOM
+//引数にユーザーが入力したtaskを入れる
+//仮引数の名前はtask
+
+function addTaskToDOM(task){
 	//追加する要素を作成
-	let notyet = document.createElement('li');
+		let notyet = document.createElement('li');
 	notyet.textContent = task;
 
 	//btnを表示する場所
@@ -59,11 +115,7 @@ document.getElementById('add').addEventListener('click',function(){
 		document.getElementById('done').appendChild(task);
 
 
-
 	})
-
-
-
 
 	//ユーザーが入力した内容を未完了一覧に追加
 	buttons.appendChild(remove);
@@ -71,21 +123,6 @@ document.getElementById('add').addEventListener('click',function(){
 	notyet.appendChild(buttons);
 	document.getElementById('not-yet').appendChild(notyet);
 
-	//ユーザーが入力した内容を消す
-	document.getElementById('task').value = '';
 
+}
 
-
-})
-
-
-//完了ボタンをクリックする
-
-//未完了一覧から削除
-
-
-
-
-//未完了を削除する処理
-
-//未完了一覧から削除
