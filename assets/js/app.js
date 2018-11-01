@@ -1,3 +1,5 @@
+
+
 let removeIcon = '<i class="far fa-trash-alt fa-lg"></i>';
 let doneIcon = '<i class="far fa-check-circle fa-lg"></i>';
 let data;
@@ -76,6 +78,10 @@ document.getElementById('add').addEventListener('click',function(){
 })
 
 
+
+
+
+
 //関数名 addTaaskToDOM
 //引数にユーザーが入力したtaskを入れる
 //仮引数の名前はtask
@@ -96,10 +102,7 @@ function addTaskToDOM(task){
 
 
 	//削除ボタンをクリック
-	remove.addEventListener('click',function(){
-		let task = this.parentNode.parentNode;
-		task.remove();
-	})
+	remove.addEventListener('click',removeTask);
 
 
 	//完了btn作成
@@ -108,14 +111,7 @@ function addTaskToDOM(task){
 	done.innerHTML = doneIcon;
 
 	//未完了を完了にする処理
-	done.addEventListener('click',function(){
-		let task = this.parentNode.parentNode;
-	
-	//完了一覧に追加する
-		document.getElementById('done').appendChild(task);
-
-
-	})
+	done.addEventListener('click',doneTask);
 
 	//ユーザーが入力した内容を未完了一覧に追加
 	buttons.appendChild(remove);
@@ -126,3 +122,21 @@ function addTaskToDOM(task){
 
 }
 
+function removeTask(){
+	let task = this.parentNode.parentNode;
+		task.remove();
+}
+
+
+function doneTask(){
+	let task = this.parentNode.parentNode;
+		document.getElementById('done').appendChild(task); //完了一覧に追加する
+}
+
+
+
+//関数を使うとき
+//①同じ処理が2回出てきたとき
+//単一責任の原則
+//処理だけ見てもわからないとき、処理に名前を付けたいとき
+//外の動きを変えずに中のコードを変えることを 「リファクタリング」
