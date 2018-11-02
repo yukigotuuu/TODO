@@ -124,12 +124,11 @@ function addTaskToDOM(task){
 function removeTask(){
 	let task = this.parentNode.parentNode;
 	let value = task.textContent;
-
+	let id = task.innerHTML;
 	task.remove();
-
 	data.notyet.splice(data.notyet.indexOf(value),1);
-
 	dataObjectUpdataed();
+
 
 /*let hoge = data.notyet.indexOf(value);
 	//文字列の中の一番最初の値を呼び戻す
@@ -146,7 +145,19 @@ function dataObjectUpdataed(){
 
 function doneTask(){
 	let task = this.parentNode.parentNode;
-		document.getElementById('done').appendChild(task); //完了一覧に追加する
+	let id = task.parentNode.id;
+	let value = task.textContent;
+
+	let target = document.getElementById('done')
+	target.appendChild(task); //完了一覧に追加する
+
+	data.task.splice(data.task.indexOf(value),1);
+	// data.done.appendChild(task);
+	console.log(value);
+	console.log(data.done);
+	data.done.push(value);
+	dataObjectUpdataed();
+
 }
 
 
