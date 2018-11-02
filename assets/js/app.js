@@ -13,11 +13,15 @@ if (localStorage.getItem('todoList')){
 		addTaskToDOM(task);
 	}
 
+	for (let task of data.done){
+		addTaskToDOM(task);
+	}
+
 	} else {//そうでなければ
 	//データの保存先を作成
 	data = {
 	 notyet: [],
-	 dane: []
+	 done: []
 	};
 
 }
@@ -150,11 +154,10 @@ function doneTask(){
 
 	let target = document.getElementById('done')
 	target.appendChild(task); //完了一覧に追加する
+	target.insertBefore(task,target.childNodes[0]);
 
 	data.task.splice(data.task.indexOf(value),1);
 	// data.done.appendChild(task);
-	console.log(value);
-	console.log(data.done);
 	data.done.push(value);
 	dataObjectUpdataed();
 
