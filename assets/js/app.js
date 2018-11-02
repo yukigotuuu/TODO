@@ -13,7 +13,7 @@ if (localStorage.getItem('todoList')){
 		addTaskToDOM(task);
 	}
 
-	}else{//そうでなければ
+	} else {//そうでなければ
 	//データの保存先を作成
 	data = {
 	 notyet: [],
@@ -73,8 +73,7 @@ document.getElementById('add').addEventListener('click',function(){
 	data.notyet.push(task);
 
 	//配列をDBに保存
-	localStorage.setItem('todoList',JSON.stringify(data));
-
+	dataObjectUpdataed();
 })
 
 
@@ -124,9 +123,26 @@ function addTaskToDOM(task){
 
 function removeTask(){
 	let task = this.parentNode.parentNode;
-		task.remove();
-}
+	let value = task.textContent;
 
+	task.remove();
+
+	data.notyet.splice(data.notyet.indexOf(value),1);
+
+	dataObjectUpdataed();
+
+/*let hoge = data.notyet.indexOf(value);
+	//文字列の中の一番最初の値を呼び戻す
+	//data.notyet(配列)の中で1番目にvalueが出てきたところを返す
+
+	data.notyet.splice(hoge,1);//ユーザーがクリックしたtodoを配列から削除
+*/
+}
+//配列をDBに保存してる
+function dataObjectUpdataed(){
+		localStorage.setItem('todoList',JSON.stringify(data));
+
+}
 
 function doneTask(){
 	let task = this.parentNode.parentNode;
