@@ -13,8 +13,6 @@ add.addEventListener('click', function() {
 	notyet.appendChild(text);
 	notyet.textContent = taskName;
 
- 	
-
 //ボタンを表示する場所
 	let buttons = document.createElement('div');
 	buttons.classList.add('buttons');
@@ -40,29 +38,16 @@ add.addEventListener('click', function() {
 		document.getElementById('done').appendChild(task);
 	})
 
-
-
 //ユーザーが入力した内容を未完了一覧に追加
 	document.getElementById('not-yet').appendChild(notyet);
 	notyet.appendChild(buttons);
 	buttons.appendChild(remove);
 	buttons.appendChild(done);
 
-
-
-
-
-
-
+//ユーザーが入力した内容を消す
+	document.getElementById('task').value = '';
 })
 
 
 
-
-
-
-
-
-//未完了を完了にする処理
-//未完了を削除する処理
 //画面をリロードしても消えないようにする処理
