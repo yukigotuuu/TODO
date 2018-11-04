@@ -21,12 +21,23 @@ add.addEventListener('click', function() {
 
 //削除ボタン作成
 	let	remove = document.createElement('button');
-	remove.classList.add('reate');
+	remove.classList.add('remove');
 	remove.innerHTML = removeIcon;
 	//削除ボタンをクリック
 	remove.addEventListener('click', function(){
 		let task = this.parentNode.parentNode;
 		task.remove();
+	})
+
+//完了ボタン作成
+	let done = document.createElement('button');
+	done.classList.add('done');
+	done.innerHTML = doneIcon;
+	//完了ボタンをクリック
+	done.addEventListener('click', function(){
+		let task = this.parentNode.parentNode;
+		//完了一覧に追加
+		document.getElementById('done').appendChild(task);
 	})
 
 
@@ -35,6 +46,8 @@ add.addEventListener('click', function() {
 	document.getElementById('not-yet').appendChild(notyet);
 	notyet.appendChild(buttons);
 	buttons.appendChild(remove);
+	buttons.appendChild(done);
+
 
 
 
