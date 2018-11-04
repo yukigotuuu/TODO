@@ -1,5 +1,8 @@
 
 
+let removeIcon = '<i class="far fa-trash-alt fa-lg"></i>';
+let doneIcon = '<i class="far fa-check-circle fa-lg"></i>';
+
 //TODOを画面に追加する処理
 let add = document.getElementById('add');
 add.addEventListener('click', function() {
@@ -10,10 +13,38 @@ add.addEventListener('click', function() {
 	notyet.appendChild(text);
 	notyet.textContent = taskName;
 
-document.getElementById('not-yet').appendChild(notyet);
+ 	
+
+//ボタンを表示する場所
+	let buttons = document.createElement('div');
+	buttons.classList.add('buttons');
+
+//削除ボタン作成
+	let	remove = document.createElement('button');
+	remove.classList.add('reate');
+	remove.innerHTML = removeIcon;
+	//削除ボタンをクリック
+	remove.addEventListener('click', function(){
+		let task = this.parentNode.parentNode;
+		task.remove();
+	})
+
+
+
+//ユーザーが入力した内容を未完了一覧に追加
+	document.getElementById('not-yet').appendChild(notyet);
+	notyet.appendChild(buttons);
+	buttons.appendChild(remove);
+
+
+
+
 
 
 })
+
+
+
 
 
 
