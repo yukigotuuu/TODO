@@ -15,8 +15,10 @@ if (localStorage.getItem('todoList')) {
 	};
 }
 
+
 //TODOを画面に追加する処理
-document.getElementById('add').addEventListener('click', function() {
+let add = document.getElementById('add');
+add.addEventListener('click', function() {
 		let taskName = document.getElementById('task').value;
 		addTaskToDOM(taskName);
 		document.getElementById('task').value = '';
